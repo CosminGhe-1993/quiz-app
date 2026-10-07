@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quiz Battle</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="screen-start">
+            <h1>Quiz Battle</h1>
+            <div class="form-teams">
+                <input id="input-team1" type="text" placeholder="Team 1 Name"/>
+                <input id="input-team2" type="text" placeholder="Team 2 Name"/>
+            </div>
+            <button id="btn-start">Start Game</button>
+        </div>
+
+        <div id="screen-categories">
+            <div id="phase-generate">
+                <h2>Categories</h2>
+                <div class="top-buttons">
+                    <button id="btn-generate">Generate categories</button>
+                    <button id="btn-generate-rest" style="display:none">Generate rest</button>
+                    <button id="btn-next" style="display:none">Next</button>
+                </div>
+                <div id="list-generated-categories"></div>
+            </div>
+            <div id="phase-select" style="display:none">
+                <h2>Team <span id="choosing-team-name"></span> picks a category</h2>
+                <div id="list-select-categories"></div>
+            </div>
+        </div>
+
+        <div id="screen-distribution">
+            <h2><span id="distribution-team-name"></span> distributes questions</h2>
+            <div id="distribution-container"></div>
+            <p>Total: <span id="total-questions">0</span>/10</p>
+            <button id="btn-confirm-distribution">Confirm</button>
+        </div>
+
+        <div id="screen-game">
+            <div class="game-header">
+                <span id="score-display">
+                    <span id="team1-name"></span>: <span id="team1-score"></span>
+                    |
+                    <span id="team2-name"></span>: <span id="team2-score"></span>
+                </span>
+                <span>Round <span id="current-round"></span>/6</span>
+                <span>Playing: <span id="current-team-name"></span></span>
+            </div>
+
+            <div id="timer-bar">
+                <span id="timer"></span>
+            </div>
+
+            <div id="question-container">
+                <div class="question-meta">
+                    <span id="question-progress"></span>
+                    <span id="difficulty-badge"></span>
+                </div>
+                <p id="question-text"></p>
+                <div id="answer-options"></div>
+            </div>
+
+            <div class="game-buttons">
+                <button id="btn-skip">Skip (<span id="skips-remaining"></span>)</button>
+                <div id="skip-confirm" style="display:none">
+                    <span>Are you sure?</span>
+                    <button id="btn-skip-yes">Yes</button>
+                    <button id="btn-skip-no">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-final">
+            <h2 id="final-title"></h2>
+            <div id="final-scores">
+                <div class="team-score-card">
+                    <h3 id="team1-final-name"></h3>
+                    <p>Score: <span id="team1-final-score"></span></p>
+                    <p>Hard correct: <span id="team1-hard-count"></span></p>
+                    <p>Medium correct: <span id="team1-medium-count"></span></p>
+                    <p>Easy correct: <span id="team1-easy-count"></span></p>
+                </div>
+                <div class="team-score-card">
+                    <h3 id="team2-final-name"></h3>
+                    <p>Score: <span id="team2-final-score"></span></p>
+                    <p>Hard correct: <span id="team2-hard-count"></span></p>
+                    <p>Medium correct: <span id="team2-medium-count"></span></p>
+                    <p>Easy correct: <span id="team2-easy-count"></span></p>
+                </div>
+            </div>
+            <button id="btn-new-game">New Game</button>
+        </div>
+
+        <script src="js/app.js" type="module"></script>
+    </body>
+</html>

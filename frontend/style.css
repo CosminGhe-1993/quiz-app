@@ -1,0 +1,375 @@
+:root {
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --accent: #a78bfa;
+    --accent2: #60a5fa;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --radius: 16px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+#screen-start, #screen-categories, #screen-distribution, #screen-game, #screen-final {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 750px;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h3 { color: var(--accent); margin-bottom: 0.5rem; }
+
+button {
+    background: rgba(167, 139, 250, 0.2);
+    color: var(--text);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 10px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    background: rgba(167, 139, 250, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(167, 139, 250, 0.35);
+}
+
+button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+input[type="text"], input[type="number"] {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: var(--accent);
+}
+
+.form-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+#btn-start { display: block; margin: 0 auto; }
+
+#answer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+#answer-options button {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+    text-align: left;
+    line-height: 1.4;
+}
+
+#answer-options button:hover:not(:disabled) {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(167, 139, 250, 0.3);
+}
+
+#answer-options button[style*="green"] {
+    background: rgba(34, 197, 94, 0.25) !important;
+    border-color: rgba(34, 197, 94, 0.6) !important;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3) !important;
+}
+
+#answer-options button[style*="red"] {
+    background: rgba(239, 68, 68, 0.25) !important;
+    border-color: rgba(239, 68, 68, 0.6) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3) !important;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+}
+
+#timer-bar {
+    text-align: center;
+    margin: 0.5rem 0 1.2rem;
+}
+
+#timer {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#question-container {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+#question-text {
+    font-size: 1.15rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.game-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+#list-generated-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+#list-generated-categories label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+#list-generated-categories label:hover {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: var(--accent);
+}
+
+#list-select-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+#list-select-categories button {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0.5rem;
+}
+
+#distribution-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+#distribution-container > div {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 2rem;
+}
+
+#distribution-container label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+}
+
+#distribution-container input[type="number"] {
+    width: 60px;
+    text-align: center;
+}
+
+#final-scores {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.team-score-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.team-score-card p {
+    margin-bottom: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#btn-new-game { display: block; margin: 0 auto; }
+
+.question-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+#question-progress {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+#difficulty-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    color: white;
+}
+
+#skip-confirm {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#skip-confirm span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+#btn-skip-yes {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+#btn-skip-yes:hover {
+    background: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+#btn-skip-no {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+#btn-skip-no:hover {
+    background: rgba(34, 197, 94, 0.35);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(30, 20, 60, 0.95);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    color: var(--text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+#distribution-container h3 {
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+#screen-distribution p {
+    margin-top: 1.5rem;
+}
+
+#btn-confirm-distribution {
+    margin-top: 0.75rem;
+}
