@@ -8,7 +8,7 @@ namespace QuizApi.Services;
 public class GroqService : IGroqService
 {
     private const string GroqApiUrl = "https://api.groq.com/openai/v1/chat/completions";
-    private const string GroqModel = "llama-3.3-70b-versatile";
+    private const string GroqModel = "openai/gpt-oss-20b";
 
     private readonly HttpClient _httpClient;
 
