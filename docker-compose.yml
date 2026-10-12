@@ -1,0 +1,11 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5057:5057"
+    environment:
+      - GroqApiKey=${GROQ_API_KEY}
+  frontend:
+    build: ./frontend
+    ports:
+      - "8082:80"
