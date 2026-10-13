@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quiz-backend
+  template:
+    metadata:
+      labels:
+        app: quiz-backend
+    spec:
+      containers:
+        - name: backend
+          image: quiz-app-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5057
+          env:
+            - name: GroqApiKey
+              valueFrom:
+                secretKeyRef:
+                  name: quiz-secrets
+                  key: groq-api-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quiz-backend
+spec:
+  selector:
+    app: quiz-backend
+  ports:
+    - port: 5057
+      targetPort: 5057
